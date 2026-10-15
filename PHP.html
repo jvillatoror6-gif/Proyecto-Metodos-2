@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Metodo Simplex y Grafico</title>
+
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Calculadora de Programación Lineal</h1>
+
+        <p>
+            Seleccione el método que desea utilizar:
+        </p>
+
+        <div class="botones">
+
+            <button onclick="mostrarSimplex()">
+                Método Simplex
+            </button>
+
+           <button onclick="mostrarGrafico()">
+                Método Gráfico
+            </button>
+
+        </div>
+
+        <div id="contenido"></div>
+
+    </div>
+
+    <script src="Simplex.js"></script>
+    <script src="metodo_grafico.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</body>
+</html>

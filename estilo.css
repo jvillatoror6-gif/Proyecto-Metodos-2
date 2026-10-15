@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 30px;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    text-align: center;
+    color: #666;
+}
+
+.botones {
+    text-align: center;
+    margin: 30px 0;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+.formulario {
+    border-top: 2px solid #ddd;
+    padding-top: 25px;
+}
+
+input,
+select {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.restriccion {
+    margin: 15px 0;
+}
+
+.resultado {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+.tabla-simplex {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.tabla-simplex th,
+.tabla-simplex td {
+    border: 1px solid #999;
+    padding: 10px;
+}
+
+.tabla-simplex th {
+    background-color: #2563eb;
+    color: white;
+}
+
+.tabla-simplex tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-simplex .pivote {
+    background-color: #ffd54f;
+    font-weight: bold;
+}
+
+.solucion {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+}
+
+.solucion h2 {
+    color: #2e7d32;
+}
