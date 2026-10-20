@@ -15,7 +15,7 @@ function mostrarCostoMinimo(){
                 <label>Número de Filas para la Oferta:</label> <br>
                 <input type="number" id="numFilas" min="1" value="0"> <br>
 
-                <button onclick="crearTablaCostoMinimo()">
+                <button onclick="ingresarDatosMatriz()">
                     Crear Matriz
                 </button>
 
@@ -36,7 +36,7 @@ function mostrarCostoMinimo(){
     `;
 }
 
-function crearTablaCostoMinimo(){
+function ingresarDatosMatriz(){
     numColumnas = Number(document.getElementById("numColumnas").value);
     numFilas = Number (document.getElementById("numFilas").value);
 
@@ -105,35 +105,25 @@ function crearTablaCostoMinimo(){
 }
 
 function resolverCostoMinimo(){
+
+    // datosOferta, datosDemanda, ofertaRestante, demandaRestante, asignaciones
     if(!comparacionOfertaDemanda()){
         return;
     }
 
-    let datosOferta = [];
-    let datosDemanda = [];
     let matrizCostos = datosMatrizCostos();
+    let datos = recoleccionDatos();
 
-    for (let j = 1; j <= numFilas; j++) {
-        datosOferta.push(Number(document.getElementById(`z${j}`).value));
-    }
-
-    for (let k = 1; k <= numColumnas; k++){
-        datosDemanda.push(Number(document.getElementById(`y${k}`).value))
-    }
-
-    let ofertaRestante = [...datosOferta];
-    let demandaRestante = [...datosDemanda];
-    let asignaciones = Array(numFilas).fill(0).map(() => Array(numColumnas).fill(0));
-
-    while (ofertaRestante.some(orestante => orestante > 0) && 
-    demandaRestante.some(drestante => drestante > 0)) {
+   
+    while (datos.ofertaRestante.some(orestante => orestante > 0) && 
+    datos.demandaRestante.some(drestante => drestante > 0)) {
         let menorCosto = Infinity;
         let filaMin = -1;
         let colMin = -1;
 
         for (let i = 0; i < numFilas; i++) {
             for (let j = 0; j < numColumnas; j++) {
-                if (ofertaRestante[i] > 0 && demandaRestante[j] > 0) {
+                if (datos.ofertaRestante[i] > 0 && datos.demandaRestante[j] > 0) {
                     if (matrizCostos[i][j] < menorCosto) {
                         menorCosto = matrizCostos[i][j];
                         filaMin = i;
@@ -145,14 +135,14 @@ function resolverCostoMinimo(){
 
     if (filaMin === -1 || colMin === -1) break;
 
-    let cantidadAsignada = Math.min(ofertaRestante[filaMin], demandaRestante[colMin]);
-    asignaciones[filaMin][colMin] = cantidadAsignada;
+    let cantidadAsignada = Math.min(datos.ofertaRestante[filaMin], datos.demandaRestante[colMin]);
+    datos.asignaciones[filaMin][colMin] = cantidadAsignada;
 
-    ofertaRestante[filaMin] -= cantidadAsignada;
-    demandaRestante[colMin] -= cantidadAsignada;
+    datos.ofertaRestante[filaMin] -= cantidadAsignada;
+    datos.demandaRestante[colMin] -= cantidadAsignada;
     }
     
-    matrizFinal(matrizCostos, datosOferta, datosDemanda, asignaciones);
+    matrizFinal(matrizCostos, datos.datosOferta, datos.datosDemanda, datos.asignaciones);
     
 }
 
@@ -317,4 +307,23 @@ function costoFinal(matrizCostos, asignaciones){
     }
     
     return costoTotal;
+}
+
+function recoleccionDatos(){
+    let datosOferta = [];
+    let datosDemanda = [];
+
+    for (let j = 1; j <= numFilas; j++) {
+        datosOferta.push(Number(document.getElementById(`z${j}`).value));
+    }
+
+    for (let k = 1; k <= numColumnas; k++){
+        datosDemanda.push(Number(document.getElementById(`y${k}`).value))
+    }
+
+    let ofertaRestante = [...datosOferta];
+    let demandaRestante = [...datosDemanda];
+    let asignaciones = Array(numFilas).fill(0).map(() => Array(numColumnas).fill(0));
+
+    return{datosOferta, datosDemanda, ofertaRestante, demandaRestante, asignaciones};
 }
