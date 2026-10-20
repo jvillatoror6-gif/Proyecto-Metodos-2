@@ -106,7 +106,6 @@ function ingresarDatosMatriz(){
 
 function resolverCostoMinimo(){
 
-    // datosOferta, datosDemanda, ofertaRestante, demandaRestante, asignaciones
     if(!comparacionOfertaDemanda()){
         return;
     }
@@ -114,7 +113,6 @@ function resolverCostoMinimo(){
     let matrizCostos = datosMatrizCostos();
     let datos = recoleccionDatos();
 
-   
     while (datos.ofertaRestante.some(orestante => orestante > 0) && 
     datos.demandaRestante.some(drestante => drestante > 0)) {
         let menorCosto = Infinity;
